@@ -18,7 +18,6 @@ class _MyAppState extends State<MyApp> {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-
         localizationsDelegates: [
           PickerLocalizationsDelegate.delegate, // 如果要使用本地化，请添加此行，则可以显示中文按钮
           GlobalMaterialLocalizations.delegate,
@@ -30,9 +29,8 @@ class _MyAppState extends State<MyApp> {
           const Locale('ko', 'KO'),
           const Locale('it', 'IT'),
           const Locale('ar', 'AR'),
-          const Locale('tr','TR')
+          const Locale('tr', 'TR')
         ],
-
         home: new MyHomePage());
   }
 }
@@ -146,114 +144,122 @@ class _MyHomePageState extends State<MyHomePage> {
 
   showPicker(BuildContext context) {
     Picker picker = Picker(
-      adapter: PickerDataAdapter<String>(pickerdata: JsonDecoder().convert(PickerData)),
-      changeToFirst: false,
-      textAlign: TextAlign.left,
-      textStyle: const TextStyle(color: Colors.blue),
-      selectedTextStyle: TextStyle(color: Colors.red),
-      columnPadding: const EdgeInsets.all(8.0),
-      onConfirm: (Picker picker, List value) {
-        print(value.toString());
-        print(picker.getSelectedValues());
-      }
-    );
+        adapter: PickerDataAdapter<String>(
+            pickerdata: JsonDecoder().convert(PickerData)),
+        changeToFirst: false,
+        textAlign: TextAlign.left,
+        textStyle: const TextStyle(color: Colors.blue),
+        selectedTextStyle: TextStyle(color: Colors.red),
+        columnPadding: const EdgeInsets.all(8.0),
+        onConfirm: (Picker picker, List value) {
+          print(value.toString());
+          print(picker.getSelectedValues());
+        });
     picker.show(_scaffoldKey.currentState);
   }
 
   showPickerModal(BuildContext context) {
     Picker(
-      adapter: PickerDataAdapter<String>(pickerdata: JsonDecoder().convert(PickerData)),
-      changeToFirst: true,
-      hideHeader: false,
-      selectedTextStyle: TextStyle(color: Colors.blue),
-      onConfirm: (Picker picker, List value) {
-        print(value.toString());
-        print(picker.adapter.text);
-      }
-    ).showModal(this.context); //_scaffoldKey.currentState);
+        adapter: PickerDataAdapter<String>(
+            pickerdata: JsonDecoder().convert(PickerData)),
+        changeToFirst: true,
+        hideHeader: false,
+        selectedTextStyle: TextStyle(color: Colors.blue),
+        onConfirm: (Picker picker, List value) {
+          print(value.toString());
+          print(picker.adapter.text);
+        }).showModal(this.context); //_scaffoldKey.currentState);
   }
 
   showPickerIcons(BuildContext context) {
     Picker(
-        adapter: PickerDataAdapter(data: [
-          PickerItem(text: Icon(Icons.add), value: Icons.add, children: [
-            PickerItem(text: Icon(Icons.more)),
-            PickerItem(text: Icon(Icons.aspect_ratio)),
-            PickerItem(text: Icon(Icons.android)),
-            PickerItem(text: Icon(Icons.menu)),
-          ]),
-          PickerItem(text: Icon(Icons.title), value: Icons.title, children: [
-            PickerItem(text: Icon(Icons.more_vert)),
-            PickerItem(text: Icon(Icons.ac_unit)),
-            PickerItem(text: Icon(Icons.access_alarm)),
-            PickerItem(text: Icon(Icons.account_balance)),
-          ]),
-          PickerItem(text: Icon(Icons.face), value: Icons.face, children: [
-            PickerItem(text: Icon(Icons.add_circle_outline)),
-            PickerItem(text: Icon(Icons.add_a_photo)),
-            PickerItem(text: Icon(Icons.access_time)),
-            PickerItem(text: Icon(Icons.adjust)),
-          ]),
-          PickerItem(text: Icon(Icons.linear_scale), value: Icons.linear_scale, children: [
-            PickerItem(text: Icon(Icons.assistant_photo)),
-            PickerItem(text: Icon(Icons.account_balance)),
-            PickerItem(text: Icon(Icons.airline_seat_legroom_extra)),
-            PickerItem(text: Icon(Icons.airport_shuttle)),
-            PickerItem(text: Icon(Icons.settings_bluetooth)),
-          ]),
-          PickerItem(text: Icon(Icons.close), value: Icons.close),
+      adapter: PickerDataAdapter(data: [
+        PickerItem(text: Icon(Icons.add), value: Icons.add, children: [
+          PickerItem(text: Icon(Icons.more)),
+          PickerItem(text: Icon(Icons.aspect_ratio)),
+          PickerItem(text: Icon(Icons.android)),
+          PickerItem(text: Icon(Icons.menu)),
         ]),
-        title: Text("Select Icon"),
-        selectedTextStyle: TextStyle(color: Colors.blue),
-        onConfirm: (Picker picker, List value) {
-          print(value.toString());
-          print(picker.getSelectedValues());
-        },
+        PickerItem(text: Icon(Icons.title), value: Icons.title, children: [
+          PickerItem(text: Icon(Icons.more_vert)),
+          PickerItem(text: Icon(Icons.ac_unit)),
+          PickerItem(text: Icon(Icons.access_alarm)),
+          PickerItem(text: Icon(Icons.account_balance)),
+        ]),
+        PickerItem(text: Icon(Icons.face), value: Icons.face, children: [
+          PickerItem(text: Icon(Icons.add_circle_outline)),
+          PickerItem(text: Icon(Icons.add_a_photo)),
+          PickerItem(text: Icon(Icons.access_time)),
+          PickerItem(text: Icon(Icons.adjust)),
+        ]),
+        PickerItem(
+            text: Icon(Icons.linear_scale),
+            value: Icons.linear_scale,
+            children: [
+              PickerItem(text: Icon(Icons.assistant_photo)),
+              PickerItem(text: Icon(Icons.account_balance)),
+              PickerItem(text: Icon(Icons.airline_seat_legroom_extra)),
+              PickerItem(text: Icon(Icons.airport_shuttle)),
+              PickerItem(text: Icon(Icons.settings_bluetooth)),
+            ]),
+        PickerItem(text: Icon(Icons.close), value: Icons.close),
+      ]),
+      title: Text("Select Icon"),
+      selectedTextStyle: TextStyle(color: Colors.blue),
+      onConfirm: (Picker picker, List value) {
+        print(value.toString());
+        print(picker.getSelectedValues());
+      },
     ).show(_scaffoldKey.currentState);
   }
 
-
   showPickerDialog(BuildContext context) {
     Picker(
-        adapter: PickerDataAdapter<String>(pickerdata: JsonDecoder().convert(PickerData)),
+        adapter: PickerDataAdapter<String>(
+            pickerdata: JsonDecoder().convert(PickerData)),
         hideHeader: true,
         title: new Text("Select Data"),
         selectedTextStyle: TextStyle(color: Colors.blue),
         onConfirm: (Picker picker, List value) {
           print(value.toString());
           print(picker.getSelectedValues());
-        }
-    ).showDialog(context);
+        }).showDialog(context);
   }
 
   showPickerArray(BuildContext context) {
     Picker(
         adapter: PickerDataAdapter<String>(
-            pickerdata: JsonDecoder().convert(PickerData2),
-            isArray: true,
+          pickerdata: JsonDecoder().convert(PickerData2),
+          isArray: true,
         ),
         hideHeader: true,
         selecteds: [3, 0, 2],
         title: Text("Please Select"),
         selectedTextStyle: TextStyle(color: Colors.blue),
-        cancel: FlatButton(onPressed: () {
-          Navigator.pop(context);
-        }, child: Icon(Icons.child_care)),
+        cancel: FlatButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Icon(Icons.child_care)),
         onConfirm: (Picker picker, List value) {
           print(value.toString());
           print(picker.getSelectedValues());
-        }
-    ).showDialog(context);
+        }).showDialog(context);
   }
 
   showPickerNumber(BuildContext context) {
     Picker(
         adapter: NumberPickerAdapter(data: [
-          NumberPickerColumn(begin: 0, end: 999, postfix: Text("\$"), suffix: Icon(Icons.insert_emoticon)),
+          NumberPickerColumn(
+              begin: 0,
+              end: 999,
+              postfix: Text("\$"),
+              suffix: Icon(Icons.insert_emoticon)),
           NumberPickerColumn(begin: 200, end: 100, jump: -10),
         ]),
         delimiter: [
-          PickerDelimiter(child: Container(
+          PickerDelimiter(
+              child: Container(
             width: 30.0,
             alignment: Alignment.center,
             child: Icon(Icons.more_vert),
@@ -265,8 +271,7 @@ class _MyHomePageState extends State<MyHomePage> {
         onConfirm: (Picker picker, List value) {
           print(value.toString());
           print(picker.getSelectedValues());
-        }
-    ).showDialog(context);
+        }).showDialog(context);
   }
 
   showPickerNumberFormatValue(BuildContext context) {
@@ -277,12 +282,12 @@ class _MyHomePageState extends State<MyHomePage> {
               end: 999,
               onFormatValue: (v) {
                 return v < 10 ? "0$v" : "$v";
-              }
-          ),
+              }),
           NumberPickerColumn(begin: 100, end: 200),
         ]),
         delimiter: [
-          PickerDelimiter(child: Container(
+          PickerDelimiter(
+              child: Container(
             width: 30.0,
             alignment: Alignment.center,
             child: Icon(Icons.more_vert),
@@ -294,34 +299,37 @@ class _MyHomePageState extends State<MyHomePage> {
         onConfirm: (Picker picker, List value) {
           print(value.toString());
           print(picker.getSelectedValues());
-        }
-    ).showDialog(context);
+        }).showDialog(context);
   }
 
   showPickerDate(BuildContext context) {
     Picker(
-      hideHeader: true,
-      adapter: DateTimePickerAdapter(),
-      title: Text("Select Data"),
-      selectedTextStyle: TextStyle(color: Colors.blue),
-      onConfirm: (Picker picker, List value) {
-        print((picker.adapter as DateTimePickerAdapter).value);
-      }
-    ).showDialog(context);
+            hideHeader: true,
+            adapter: DateTimePickerAdapter(),
+            title: Text("Select Data"),
+            columnPadding: EdgeInsets.all(0),
+            selectedTextStyle: TextStyle(color: Colors.blue),
+            confirm: Text("Hoàng thành"),
+            cancel: Text("Huỷ"),
+            onConfirm: (Picker picker, List value) {
+              print((picker.adapter as DateTimePickerAdapter).value);
+            })
+        .showDialog(context,
+            contentPadding: EdgeInsets.all(0),
+            titlePadding: EdgeInsets.fromLTRB(24, 10, 0, 0));
   }
 
   showPickerDateCustom(BuildContext context) {
     new Picker(
         hideHeader: true,
         adapter: new DateTimePickerAdapter(
-          customColumnType: [2,1,0,3,4],
+          customColumnType: [2, 1, 0, 3, 4],
         ),
         title: new Text("Select Data"),
         selectedTextStyle: TextStyle(color: Colors.blue),
         onConfirm: (Picker picker, List value) {
           print((picker.adapter as DateTimePickerAdapter).value);
-        }
-    ).showDialog(context);
+        }).showDialog(context);
   }
 
   showPickerDateTime(BuildContext context) {
@@ -341,12 +349,14 @@ class _MyHomePageState extends State<MyHomePage> {
         textAlign: TextAlign.right,
         selectedTextStyle: TextStyle(color: Colors.blue),
         delimiter: [
-          PickerDelimiter(column: 5, child: Container(
-            width: 16.0,
-            alignment: Alignment.center,
-            child: Text(':', style: TextStyle(fontWeight: FontWeight.bold)),
-            color: Colors.white,
-          ))
+          PickerDelimiter(
+              column: 5,
+              child: Container(
+                width: 16.0,
+                alignment: Alignment.center,
+                child: Text(':', style: TextStyle(fontWeight: FontWeight.bold)),
+                color: Colors.white,
+              ))
         ],
         footer: Container(
           height: 50.0,
@@ -360,8 +370,7 @@ class _MyHomePageState extends State<MyHomePage> {
           this.setState(() {
             stateText = picker.adapter.toString();
           });
-        }
-    ).show(_scaffoldKey.currentState);
+        }).show(_scaffoldKey.currentState);
   }
 
   showPickerDateRange(BuildContext context) {
@@ -369,19 +378,18 @@ class _MyHomePageState extends State<MyHomePage> {
 
     Picker ps = new Picker(
         hideHeader: true,
-        adapter: new DateTimePickerAdapter(type: PickerDateTimeType.kYMD, isNumberMonth: true),
+        adapter: new DateTimePickerAdapter(
+            type: PickerDateTimeType.kYMD, isNumberMonth: true),
         onConfirm: (Picker picker, List value) {
           print((picker.adapter as DateTimePickerAdapter).value);
-        }
-    );
+        });
 
     Picker pe = new Picker(
         hideHeader: true,
         adapter: new DateTimePickerAdapter(type: PickerDateTimeType.kYMD),
         onConfirm: (Picker picker, List value) {
           print((picker.adapter as DateTimePickerAdapter).value);
-        }
-    );
+        });
 
     List<Widget> actions = [
       FlatButton(
@@ -427,8 +435,7 @@ class _MyHomePageState extends State<MyHomePage> {
             isNumberMonth: true,
             yearSuffix: "年",
             monthSuffix: "月",
-            daySuffix: "日"
-        ),
+            daySuffix: "日"),
         title: new Text("Select DateTime"),
         onConfirm: (Picker picker, List value) {
           print(picker.adapter.text);
@@ -437,8 +444,6 @@ class _MyHomePageState extends State<MyHomePage> {
           this.setState(() {
             stateText = picker.adapter.toString();
           });
-        }
-    ).show(_scaffoldKey.currentState);
+        }).show(_scaffoldKey.currentState);
   }
-
 }
