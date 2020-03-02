@@ -311,12 +311,15 @@ class _MyHomePageState extends State<MyHomePage> {
             selectedTextStyle: TextStyle(color: Colors.blue),
             confirm: Text("Hoàng thành"),
             cancel: Text("Huỷ"),
+            divider: BorderSide(color: Colors.black, width: 2),
             onConfirm: (Picker picker, List value) {
               print((picker.adapter as DateTimePickerAdapter).value);
             })
         .showDialog(context,
             contentPadding: EdgeInsets.all(0),
-            titlePadding: EdgeInsets.fromLTRB(24, 10, 0, 0));
+            titlePadding: EdgeInsets.fromLTRB(24, 10, 0, 0),
+            shapeBorder: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10)));
   }
 
   showPickerDateCustom(BuildContext context) {

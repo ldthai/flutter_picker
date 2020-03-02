@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as Dialog;
+import 'package:flutter_picker/my_cupertino_picker.dart';
 import 'dart:async';
 import 'PickerLocalizations.dart';
 
@@ -73,6 +74,8 @@ class Picker {
 
   final Decoration headerDecoration;
 
+  final BorderSide divider;
+
   Widget _widget;
   PickerWidgetState _state;
 
@@ -82,6 +85,7 @@ class Picker {
       this.selecteds,
       this.height = 150.0,
       this.itemExtent = 28.0,
+      this.divider,
       this.columnPadding,
       this.textStyle,
       this.cancelTextStyle,
@@ -146,7 +150,8 @@ class Picker {
           const EdgeInsets.fromLTRB(24.0, 24.0, 24.0, 0.0),
       TextStyle titleTextStyle,
       EdgeInsetsGeometry contentPadding =
-          const EdgeInsets.fromLTRB(24.0, 20.0, 24.0, 24.0)}) {
+          const EdgeInsets.fromLTRB(24.0, 20.0, 24.0, 24.0),
+      ShapeBorder shapeBorder}) {
     Dialog.showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -202,7 +207,8 @@ class Picker {
           return AlertDialog(
             title: title,
             actions: actions,
-            content:makePicker(),
+            content: makePicker(),
+            shape: shapeBorder,
             contentPadding: contentPadding,
             titlePadding: titlePadding,
             titleTextStyle: titleTextStyle,
@@ -418,11 +424,12 @@ class PickerWidgetState<T> extends State<_PickerWidget> {
                   ? theme.dialogBackgroundColor
                   : picker.containerColor,
             ),
-            child: CupertinoPicker(
+            child: MyCupertinoPicker(
               backgroundColor: picker.backgroundColor,
               scrollController: scrollController[i],
               itemExtent: picker.itemExtent,
               looping: picker.looping,
+              highlighterBorder: picker.divider,
               onSelectedItemChanged: (int index) {
                 if (__printDebug) print("onSelectedItemChanged");
                 setState(() {
